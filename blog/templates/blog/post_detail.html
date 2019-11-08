@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+  <div class="col-8">
+      <div class="post-detail">
+          <div><h3>{{post.title}}</h3></div>
+          <div class="update-delete-buttons">
+              {% if post.author == user %}
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog:post-update' post.id %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:post-delete' post.id %}">Delete</a>
+              {% endif %}
+          </div>      
+      </div>
+      {{post.body}}
+      <br>
+      <hr>
+      <br>
+      <hr>
+    
+      {% with comments.count as total_comments %}
+        <h2>
+          {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h2>
+      {% endwith %}
+    
+      {% for comment in comments %}
+        <div class="comment">
+          <p class="info">
+            Comment {{ forloop.counter }} by {{ comment.author.username }}
+            {{ comment.created }}
+          </p>
+          {{ comment.body|linebreaks }}
+        </div>
+        <hr>
+      {% empty %}
+          <p>There are no comments yet.</p>
+      {% endfor %}
+    
+      <h2>Add a new comment</h2>
+      <form action="." method="POST">
+        {% csrf_token %}
+        {{ comment_form|crispy }}  
+        <p><button>Add Comment</button></p>
+      </form>
+  </div>
+
+
+  <div class="col-4">
+
+        <h4><strong><span class="my-font">Similar posts</span></strong></h4>
+        <div class="border-for-similar">
+        {% for post in similar_posts %}
+          <div class="similar-posts-box">
+            <div class="similar-posts-title">
+              <strong>
+                <a class="my-link-title my-font" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+              </strong>
+            </div>
+            <div class="tags">
+                {% for tag in post.tags.all %}
+                  <a class="my-link-tag my-font badge badge-info" href="{% url 'blog:post-list-by-tag' tag.slug %}">
+                    {{ tag.name }}
+                  </a>
+                <!-- {% if not forloop.last %}, {% endif %} -->
+                {% endfor %}
+            </div>
+            <div class="my-font2">{{post.body|truncatewords:12}}</div>
+          </div>
+        {% empty %}
+          There are no similar posts yet.
+        {% endfor %}
+        </div>
+      
+       
+  </div>
+</div>
+
+ {% endblock %}
