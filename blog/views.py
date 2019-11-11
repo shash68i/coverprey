@@ -2,11 +2,13 @@ from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.db.models.functions import Greatest
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.db.models import Count
 from taggit.models import Tag
@@ -147,3 +149,20 @@ def UserPostListView(request, username):
 
     return render(request, 'blog/user_posts.html', {'posts':posts})
 
+
+@login_required
+@require_POST
+def image_like(request):
+    post_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if post_id and action:
+        try:
+            image = Image.objects.get(id=post_id)
+            if action == 'like':
+                image.users_like.add(request.user)
+            else:
+                image.users_like.remove(request.user)
+            return JsonResponse({'status':'ok'})
+        except:
+            pass
+    return JsonResponse({'status':'ko'})

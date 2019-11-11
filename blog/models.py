@@ -17,7 +17,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    users_like = models.ManyToManyField(User, related_name='images_liked', blank=True)
     tags = TaggableManager()
 
     class Meta:
