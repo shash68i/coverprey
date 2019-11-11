@@ -6,6 +6,7 @@ from django.db.models.functions import Greatest
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.db.models import Count
 from taggit.models import Tag
@@ -145,3 +146,4 @@ def UserPostListView(request, username):
     posts = Post.objects.filter(author=user)
 
     return render(request, 'blog/user_posts.html', {'posts':posts})
+

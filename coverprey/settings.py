@@ -5,7 +5,7 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = [
     'mysite.com', 
@@ -13,12 +13,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '476744646296200'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'f35024612063701dcc71ff22cdf8d8ef'
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
@@ -27,6 +25,7 @@ AUTHENTICATION_BACKENDS = (
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -91,15 +90,14 @@ WSGI_APPLICATION = 'coverprey.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'coverprey',
-        'USER': 'mydjangouser',
-        'PASSWORD': 'django6879',
-        'HOST': 'localhost',
+        'ENGINE': config('DB_ENGINE'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

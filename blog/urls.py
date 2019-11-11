@@ -6,7 +6,6 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     UserPostListView,
-    # PostListSearchView
 )
 
 app_name = 'blog'
@@ -19,5 +18,5 @@ urlpatterns = [
     path('user/<str:username>', UserPostListView, name='user-posts'), 
     path('<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),    
-    path('new/',PostCreateView.as_view(),name='post-create'),
+    path('new/', PostCreateView.as_view(),name='post-create'),
 ]
