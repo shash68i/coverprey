@@ -17,7 +17,8 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    users_like = models.ManyToManyField(User, related_name='images_liked', blank=True)
+    # users_like = models.ManyToManyField(User, related_name='images_liked', blank=True)
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
     tags = TaggableManager()
 
     class Meta:
@@ -25,6 +26,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def total_likes(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return reverse('blog:post-detail',kwargs={'pk': self.pk})

@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.template.loader import render_to_string
 from django.db.models.functions import Greatest
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
@@ -98,12 +99,23 @@ def PostDetailView(request, pk):
     similar_posts = similar_posts.annotate(same_tags=Count('tags'))\
                                  .order_by('-same_tags','-publish')[:5]
 
+
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        is_liked = True
+
+    if request.is_ajax():
+        html = render_to_string('blog/comments.html', context, request=request)
+        return JsonResponse({'form': html})
+
     return render(request, 'blog/post_detail.html', 
                             {'post': post,
                             'comments': comments,
                             'new_comment': new_comment,
                             'comment_form': comment_form,
-                            'similar_posts':similar_posts})
+                            'similar_posts': similar_posts,
+                            'total_likes': post.total_likes(),
+                            'is_liked': is_liked,})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -151,18 +163,20 @@ def UserPostListView(request, username):
 
 
 @login_required
-@require_POST
-def image_like(request):
-    post_id = request.POST.get('id')
-    action = request.POST.get('action')
-    if post_id and action:
-        try:
-            image = Image.objects.get(id=post_id)
-            if action == 'like':
-                image.users_like.add(request.user)
-            else:
-                image.users_like.remove(request.user)
-            return JsonResponse({'status':'ok'})
-        except:
-            pass
-    return JsonResponse({'status':'ko'})
+def like_post(request):
+    post = get_object_or_404(Post, id=request.POST.get('id'))
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        is_liked = False
+    else:
+        post.likes.add(request.user)
+        is_liked = True
+    context = {
+        'post': post,
+        'is_liked': is_liked,
+        'total_likes': post.total_likes(),
+    }
+    if request.is_ajax():
+        html = render_to_string('blog/like_section.html', context, request=request)
+        return JsonResponse({'form': html})
