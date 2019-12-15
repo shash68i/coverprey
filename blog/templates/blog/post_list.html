@@ -15,7 +15,11 @@
                     <input class="search-box" name="q" type="text" placeholder="Search...">
                 </form>
               </div>
-              <div class="create-button"> <a href="{% url 'blog:post-create' %}"><button class="btn-add">Add Post</button></a></div>
+              <div class="create-button"> <a href="{% url 'blog:post-create' %}">
+                <button class="btn-add float-right">
+                  <i class="fa fa-plus" style="font-size: 20px; color:#0084bf"></i> Add Post
+                </button></a>
+              </div>
           </div>
       
           {% if tag %}
@@ -48,8 +52,8 @@
       
                 <div class="content-body">
                   {{post.body|safe|linebreaks}}
-                  <div>Book: {{ post.book_name }}</div>
-                  <div>Author: {{ post.author_name }}</div>
+                  <div><strong>Book:</strong> {{ post.book_name }}</div>
+                  <div><strong>Author:</strong> {{ post.author_name }}</div>
                 </div>
       
                 <div class="comment-like">
