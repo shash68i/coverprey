@@ -105,7 +105,7 @@ def PostDetailView(request, pk):
         is_liked = True
 
     if request.is_ajax():
-        html = render_to_string('blog/comments.html', context, request=request)
+        html = render_to_string('blog/like_section.html', context, request=request)
         return JsonResponse({'form': html})
 
     return render(request, 'blog/post_detail.html', 

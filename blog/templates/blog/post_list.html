@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block title %}
-  Hello Posts
+  {{user.username}}'s - news feeds
 {% endblock %}
 
 
@@ -11,17 +11,11 @@
           <div class="search-create">
               <div class="img-user"><img class="img-circle" src="{{ user.profile.image.url }}"></div>
               <div class="search-box"> 
-                <!-- <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                  </div>
-                </div>  -->
                 <form action="{% url 'blog:post-by-search' %}" method="get">
-                    <input name="q" type="text" placeholder="Search...">
+                    <input class="search-box" name="q" type="text" placeholder="Search...">
                 </form>
               </div>
-              <div class="create-button"> <a href="{% url 'blog:post-create' %}"><button class="btn btn-secondary">Add Post</button></a></div>
+              <div class="create-button"> <a href="{% url 'blog:post-create' %}"><button class="btn-add">Add Post</button></a></div>
           </div>
       
           {% if tag %}
@@ -32,7 +26,7 @@
             {% for post in posts %}
             <div class="post-box infinite-item">
                 <div class="content-section">
-                  <div class="img-section"><img class="img-circle" src="{{ post.author.profile.image.url }}"></div>
+                  <div class="img-section"><a href="{% url 'blog:user-posts' post.author.username %}"><img class="img-circle" src="{{ post.author.profile.image.url }}"></a></div>
                   <div class="title-author">
                     <div class="author-publish">
                       <div > <a class="author-only-link" href="{% url 'blog:user-posts' post.author.username %}">@{{post.author}}</a></div>
@@ -53,20 +47,13 @@
                 </div>
       
                 <div class="content-body">
-                {{post.body|safe|linebreaks}}
-                <div>Book: {{ post.book_name }}</div>
-                <div>Author: {{ post.author_name }}</div>
+                  {{post.body|safe|linebreaks}}
+                  <div>Book: {{ post.book_name }}</div>
+                  <div>Author: {{ post.author_name }}</div>
                 </div>
       
                 <div class="comment-like">
-                <div class="meta-content-section">
-
-                  <div class="btn-like">
-                    Like
-                  </div>
-                  <!-- <div class="btn-like">Like</div>                   -->
-                  <div class="btn-comment">Comment</div>
-                </div>
+                  Likes and Comments >> 
                 </div>
               </div>
             {% endfor %}
