@@ -51,13 +51,24 @@
                 </div>
       
                 <div class="content-body">
-                  {{post.body|safe|linebreaks}}
+                    {{post.body|safe|linebreaks|truncatechars:420}} 
+                      {% if post.body|length >= 420 %} 
+                        <a class="only-body-link" href="{% url 'blog:post-detail' post.id %}">
+                          <span id="read-more">read more</span> 
+                        </a>
+                      {% endif %}
                   <div><strong>Book:</strong> {{ post.book_name }}</div>
                   <div><strong>Author:</strong> {{ post.author_name }}</div>
                 </div>
       
-                <div class="comment-like">
-                  Likes and Comments >> 
+                <div id="comment-like">
+                  <a class="comment-like-link" href="{% url 'blog:post-detail' post.id %}">
+                    <i class="fa fa-heart-o" style="font-size:20px;color:rgb(221, 90, 90)"></i>
+                    <span style="font-size: 18px; color: black; font-family: 'Barlow', sans-serif;" >{{ post.likes.count }} like{{ post.likes.count|pluralize }}</span> 
+                    <i class="fa fa-comment-o" style="font-size:23px;color:rgb(19, 146, 29)"></i>
+                    <span style="font-size: 18px; color: black; font-family: 'Barlow', sans-serif;">{{ post.post_comments.count }} comment{{ post.post_comments.count|pluralize }}</span> 
+                    <i class="fa fa-caret-right" style="font-size:20px;color:#0c6690;"></i>
+                  </a>
                 </div>
               </div>
             {% endfor %}

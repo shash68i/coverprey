@@ -14,13 +14,21 @@ class UserRegisterForm(UserCreationForm):
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
+    email.widget.attrs.update({'class': 'user-email'})
 
     class Meta:
         model = User
         fields = ['email',]
 
 
+
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['bio', 'location', 'image',]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['bio'].widget.attrs.update({'class': 'user-bio'})
+        self.fields['location'].widget.attrs.update({'class':'user-location'})
+        self.fields['image'].widget.attrs.update({'class':'user-image'})

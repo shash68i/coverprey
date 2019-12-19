@@ -22,13 +22,13 @@ from django.views.generic import (ListView,
                             )   
 
 
-class PostListView(LoginRequiredMixin, ListView):
-    login_url = '/login/'
-    model = Post
-    context_object_name = 'posts'
-    paginate_by = 4
-    template_name = 'blog/post_list.html'
-    ordering = ['-publish']
+# class PostListView(LoginRequiredMixin, ListView):
+#     login_url = '/login/'
+#     model = Post
+#     context_object_name = 'posts'
+#     paginate_by = 4
+#     template_name = 'blog/post_list.html'
+#     ordering = ['-publish']
 
 
 @login_required(login_url='/login/')

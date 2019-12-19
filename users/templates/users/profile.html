@@ -2,26 +2,26 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="profile-content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <!-- <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-          <p class="text-secondary">{{ user.profile.bio }}</p>
-          <p class="text-secondary">{{ user.profile.location }}</p>
-        </div> -->
-    </div>
-    <!-- FORM HERE -->
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset>
-            <legend class="border-bottom mb-4">Join Today</legend>
-            {{ u_form.as_p }}
-            {{ p_form.as_p }}
-        </fieldset>
-        <div>
-            <button class="btn btn-outline-info" type="submit">Update</button>
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         </div>
-    </form>
+        <div class="profile-username">@{{ user.username }}</div>
+            <!-- FORM HERE -->
+        <div class="profile-form-content">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="profile-form">
+                    {{ u_form.as_p }}
+                    {{ p_form.as_p }}
+                </fieldset>
+                <div>
+                    <button class="btn-update" type="submit">Update</button>
+                </div>
+            </form>
+            <a class="author-only-link float-right more-for-profile" href="">
+                See Posts <i class="fa fa-caret-right" style="color: #0c6690; font-size:17px"></i>
+            </a>
+        </div>  
     </div>
+
 {% endblock content %}
