@@ -22,6 +22,22 @@ def register(request):
 
 @login_required(login_url='/login/')
 def profile(request):
+    user = get_object_or_404(User, username=request.user.username)
+    posts = Post.objects.filter(author=user)
+
+    paginator = Paginator(posts, 4) # 4 posts in each page
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        posts = paginator.page(paginator.num_pages)
+
+
+
     if request.POST:
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -38,6 +54,8 @@ def profile(request):
     context = {
         'u_form' : u_form,
         'p_form' : p_form,
+        'posts' : posts,
+        'page' : page,
     }
 
     return render(request, 'users/profile.html', context)

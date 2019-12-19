@@ -9,7 +9,7 @@
   <div class="row">
       <div class="col-8">      
           <div class="search-create">
-              <div class="img-user"><img class="img-circle" src="{{ user.profile.image.url }}"></div>
+              <div class="img-user"><a href="{% url 'profile' %}"><img class="img-circle" src="{{ user.profile.image.url }}"></a></div>
               <div class="search-box"> 
                 <form action="{% url 'blog:post-by-search' %}" method="get">
                     <input class="search-box" name="q" type="text" placeholder="Search...">
