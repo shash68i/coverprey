@@ -104,11 +104,6 @@ li a:hover {
   z-index: 999;
 }
 
-.content-section {
-  display: flex;
-  padding-left: 4px;
-}
-
 .post-box {
   font-family: 'Quicksand', sans-serif;
   background: #ffffff;
