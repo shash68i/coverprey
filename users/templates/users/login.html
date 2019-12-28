@@ -2,33 +2,34 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-
-<div id="adjustit">
-    <div class="login-form">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset>
-                <legend><span id="login-text" >Log In</span></legend>
+    
+    <div id="adjustit">
+        <div class="login-form">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <legend><span id="login-text" >Log In</span></legend>
+                    <hr align="center" width="90%">
+                    <p>{{ form.username }}</p>  
+                    <p>{{ form.password }}</p>
+                    <!-- {{ form|crispy }} -->
+                    
+                </fieldset>
+                <div class="login-form-button-div">
+                    <button class="login-form-button" type="submit">Login</button>
+                </div>
                 <hr align="center" width="90%">
-                <p>{{ form.username }}</p>  
-                <p>{{ form.password }}</p>
-                <!-- {{ form|crispy }} -->
-                
-            </fieldset>
-            <div class="login-form-button-div">
-                <button class="login-form-button" type="submit">Login</button>
+                <div id="facebook-login-div" >
+                    <a id="facebook-login" href="{% url 'social:begin' 'facebook' %}">
+                        <i class="fa fa-facebook-f" style="font-size:25px"></i>
+                        Continue with facebook
+                    </a>
+                </div>
+            </form>
+            <div class="login-footer">
+                Need An Account? <a class="ml-2 signup-footer" href="{% url 'register' %}">Sign Up</a>
             </div>
-            <hr align="center" width="90%">
-            <div id="facebook-login-div" >
-                <a id="facebook-login" href="{% url 'social:begin' 'facebook' %}">
-                    <i class="fa fa-facebook-f" style="font-size:25px"></i>
-                    Continue with facebook
-                </a>
-            </div>
-        </form>
-        <div class="login-footer">
-            Need An Account? <a class="ml-2 signup-footer" href="{% url 'register' %}">Sign Up</a>
         </div>
     </div>
-</div>
+    
 {% endblock content %}
