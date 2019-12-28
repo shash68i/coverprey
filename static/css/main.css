@@ -470,10 +470,15 @@ textarea {
   padding-left: 10px;
   font-family: 'Quicksand', sans-serif;
   font-size: 20px;
+  padding-bottom: 5px;
 }
 
 #id_password[type=password]{
   border: 2px solid rgb(192, 196, 200);
+  padding-left: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  padding-bottom: 5px;
 }
 
 #id_username[type=text]:focus, #id_password[type=password]:focus{
@@ -488,20 +493,23 @@ textarea {
   border-radius: 5px;
   width: 90%;
   height: 50px;
-  font-size: 20px;
+  font-size: 19px;
   color: white;
 }
 
 #facebook-login {
   color: white;
+  font-family: 'Quicksand', sans-serif;
 }
 
 #adjustit {
   margin-top: 140px;
+  margin-left: 70%;
 }
 
 .login-footer{
-  margin-top: 10px;
+  margin-top: 12px;
+  margin-bottom: 10px;
 }
 
 .login-form-button{
@@ -511,7 +519,32 @@ textarea {
   border-radius: 5px;
   border: none;
   color: white;
-  font-size: 25px;
-  font-family:  'Quicksand', sans-serif;
+  font-size: 28px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 590;
   background: linear-gradient(45deg, #128cc5, #a5d3e9);
+  transition: all 0.1s cubic-bezier(.25,.8,.25,1);
+}
+
+.login-form-button:hover{
+  margin-top: 10px;
+  width: 90.5%;
+  height: 65px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 28px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 590;
+  background: linear-gradient(45deg, #128cc5, #a5d3e9);
+}
+
+.signup-footer{
+  text-decoration: none;
+  color: #0084bf;
+}
+
+.signup-footer:hover{
+  text-decoration: none;
+  color: #159bda;
 }

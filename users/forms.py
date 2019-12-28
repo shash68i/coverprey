@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
@@ -32,3 +34,7 @@ class ProfileUpdateForm(forms.ModelForm):
         self.fields['bio'].widget.attrs.update({'class': 'user-bio'})
         self.fields['location'].widget.attrs.update({'class':'user-location'})
         self.fields['image'].widget.attrs.update({'class':'user-image'})
+
+class CustomAuthForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput(attrs={'placeholder': 'username'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'password'}))
