@@ -1,21 +1,32 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div id="adjustit">
     <div class="login-form">
         <form method="POST">
             {% csrf_token %}
             <fieldset>
-                <legend>Log In</legend>
+                <legend><span id="login-text" >Log In</span></legend>
+                <hr align="center" width="90%">
                 <p>{{ form.username }}</p>  
                 <p>{{ form.password }}</p>
+                <!-- {{ form|crispy }} -->
+                
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Login</button>
+            <div class="login-form-button-div">
+                <button class="login-form-button" type="submit">Login</button>
             </div>
-            <div><a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a></div>
+            <hr align="center" width="90%">
+            <div id="facebook-login-div" >
+                <a id="facebook-login" href="{% url 'social:begin' 'facebook' %}">
+                    <i class="fa fa-facebook-f" style="font-size:25px"></i>
+                    Continue with Facebook
+                </a>
+            </div>
         </form>
-        <div>
-            Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+        <div class="login-footer">
+            Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
         </div>
     </div>
+</div>
 {% endblock content %}

@@ -17,8 +17,14 @@
 }
 
 .search-box[type=text] {
+  border: 2px solid rgb(192, 196, 200);
+  border-radius: 5px;
+}
+
+.search-box[type=text]:focus {
   border: 2px solid #0084bf;
   border-radius: 5px;
+  outline: none;
 }
 
 .btn-add {
@@ -424,4 +430,88 @@ textarea {
 
 .content-section {
   display: flex;
+}
+
+#login-text {
+  color: #056794;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 40px;
+  font-weight: 590;
+  width: 100px;
+}
+
+.login-form {
+  background: #ffffff;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 5px;
+  width: 420px;
+  padding: 4px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 0.3px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#id_username {
+  margin-top: 20px;
+  width: 90%;
+  height: 50px;
+  border-radius: 5px;
+}
+
+#id_password {
+  margin-top: 10px;
+  width: 90%;
+  height: 50px;
+  border-radius: 5px;
+}
+
+#id_username[type=text]{
+  border: 2px solid rgb(192, 196, 200);
+  padding-left: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+}
+
+#id_password[type=password]{
+  border: 2px solid rgb(192, 196, 200);
+}
+
+#id_username[type=text]:focus, #id_password[type=password]:focus{
+  border: 2px solid #279cd3;
+  outline: none;
+}
+
+#facebook-login-div{
+  margin: 0 auto;
+  background-color: #4267B2;
+  padding-top: 10px;
+  border-radius: 5px;
+  width: 90%;
+  height: 50px;
+  font-size: 20px;
+  color: white;
+}
+
+#facebook-login {
+  color: white;
+}
+
+#adjustit {
+  margin-top: 140px;
+}
+
+.login-footer{
+  margin-top: 10px;
+}
+
+.login-form-button{
+  margin-top: 10px;
+  width: 90%;
+  height: 65px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 25px;
+  font-family:  'Quicksand', sans-serif;
+  background: linear-gradient(45deg, #128cc5, #a5d3e9);
 }
