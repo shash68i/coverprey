@@ -502,6 +502,13 @@ textarea {
   font-family: 'Quicksand', sans-serif;
 }
 
+#facebook-login:hover {
+  text-decoration: none;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+}
+
+
 #adjustit {
   margin-top: 140px;
   margin-left: 70%;

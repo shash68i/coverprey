@@ -1,6 +1,8 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div id="adjustit">
     <div class="login-form">
         <form method="POST">
@@ -26,7 +28,6 @@
         </form>
         <div class="login-footer">
             Need An Account? <a class="ml-2 signup-footer" href="{% url 'register' %}">Sign Up</a>
-            <img src="" alt="">
         </div>
     </div>
 </div>
