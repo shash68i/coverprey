@@ -36,5 +36,5 @@ class ProfileUpdateForm(forms.ModelForm):
         self.fields['image'].widget.attrs.update({'class':'user-image'})
 
 class CustomAuthForm(AuthenticationForm):
-    username = forms.CharField(widget=TextInput(attrs={'placeholder': 'username'}))
+    username = forms.CharField(widget=TextInput(attrs={'placeholder': 'username', 'id':'id_username_login'}))
     password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'password'}))

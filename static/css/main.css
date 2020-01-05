@@ -99,7 +99,7 @@ li a:hover {
     width: 50%;
 }
 
-#hint_id_password1, #hint_id_username {
+#hint_id_password1, #hint_id_username_login {
     display: none;
 }
 
@@ -451,7 +451,7 @@ textarea {
   box-shadow: 0 0.3px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-#id_username {
+#id_username_login {
   margin-top: 20px;
   width: 90%;
   height: 50px;
@@ -465,7 +465,7 @@ textarea {
   border-radius: 5px;
 }
 
-#id_username[type=text]{
+#id_username_login[type=text]{
   border: 2px solid rgb(192, 196, 200);
   padding-left: 10px;
   font-family: 'Quicksand', sans-serif;
