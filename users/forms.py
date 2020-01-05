@@ -13,6 +13,14 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'placeholder': 'username'})
+        self.fields['email'].widget.attrs.update({'placeholder':'email'})
+        self.fields['password1'].widget.attrs.update({'placeholder':'password'})
+        self.fields['password2'].widget.attrs.update({'placeholder':'confirm password'})
+
+
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()

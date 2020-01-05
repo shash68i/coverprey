@@ -99,7 +99,7 @@ li a:hover {
     width: 50%;
 }
 
-#hint_id_password1, #hint_id_username_login {
+#hint_id_password1, #hint_id_username_login, #hint_id_username, .requiredField{
     display: none;
 }
 
@@ -492,7 +492,7 @@ textarea {
   padding-bottom: 5px;
 }
 
-#id_username[type=text]:focus, #id_password[type=password]:focus{
+#id_username_login[type=text]:focus, #id_password[type=password]:focus{
   border: 2px solid #279cd3;
   outline: none;
 }
@@ -564,8 +564,4 @@ textarea {
 .signup-footer:hover{
   text-decoration: none;
   color: #159bda;
-}
-
-.requiredField {
-  display: none;
 }
