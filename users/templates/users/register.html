@@ -1,17 +1,29 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-        <form method="POST">
-            {% csrf_token %}
-                <legend class="border-bottom mb-4">Join Today</legend>
-                {{ form|crispy }}
-            <div>
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+
+        <div id="adjustit">
+            <div class="signup-form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend><span id="login-text" >Sign Up</span></legend>
+                        <hr align="center" width="90%">
+                        {{ form|crispy }}
+                        
+                    </fieldset>
+                    <div class="login-form-button-div">
+                        <button class="login-form-button" type="submit">Sign Up</button>
+                    </div>
+                    <hr align="center" width="90%">
+                </form>
+                <div class="login-footer">
+                    Already have an Account? <a class="ml-2 signup-footer" href="{% url 'login' %}">Log In</a>
+                </div>
             </div>
-        </form>
-        <div>
-            <small>
-                Already Have An Account? <a href="#">Sign In</a>
-            </small>
         </div>
+
+
+
+
 {% endblock content %}
