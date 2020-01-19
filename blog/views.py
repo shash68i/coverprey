@@ -14,7 +14,7 @@ from django.urls import reverse_lazy
 from django.db.models import Count
 from taggit.models import Tag
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, MyCreateForm
 from django.views.generic import (ListView,  
                                   CreateView,
                                   UpdateView,
@@ -119,8 +119,9 @@ def PostDetailView(request, pk):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['title', 'body', 'book_name', 'author_name', 'tags']
+    # model = Post
+    # fields = ['title', 'body', 'book_name', 'author_name', 'tags']
+    form_class = MyCreateForm
     template_name = 'blog/post_create.html'
 
     def form_valid(self, form):

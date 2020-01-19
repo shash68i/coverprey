@@ -381,13 +381,12 @@ label {
   font-weight: 600;
 }
 
-textarea {
+#id_bio {
   border: 2px solid #0084bf;
   border-radius: 5px;
   resize: none;
   height: 40px;
   padding-left: 5px;
-  /* margin-right: 60px; */
 }
 
 .profile-username {
@@ -398,7 +397,7 @@ textarea {
   font-weight: 900;
 }
 
-.btn-update {
+.btn-update, .post-create-button {
   background-color: #e2eff5;
   border-radius: 4px;
   border: 2px solid #0084bf;
@@ -520,7 +519,7 @@ textarea {
 }
 
 
-#adjustit {
+.adjustit {
   margin-top: 140px;
 }
 
@@ -564,4 +563,51 @@ textarea {
 .signup-footer:hover{
   text-decoration: none;
   color: #159bda;
+}
+
+
+/* POST CREATION STYLINGS */
+
+.post-create-form {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: 5px;
+    width: 70%;
+    height: 38.5rem;
+    padding: 30px;
+    box-shadow: 0 0.3px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#title-create, #body-create, #book-create, #author-create, #tags-create {
+  margin-top: 3px;
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+}
+
+#title-create[type=text], #body-create, 
+#book-create[type=text], #author-create[type=text], 
+#tags-create[type=text]{
+  border: 1px solid rgb(192, 196, 200);
+  padding-left: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+#title-create[type=text]:focus, #body-create:focus,
+#book-create[type=text]:focus, #author-create[type=text]:focus, 
+#tags-create[type=text]:focus {
+  border: 2px solid #279cd3;
+  outline: none;
+}
+
+#body-create {
+  height: 200px;
+}
+
+#create-heading{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  color: green;
 }
