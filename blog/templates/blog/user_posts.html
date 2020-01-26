@@ -1,9 +1,63 @@
+
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-  {% for post in posts %}
-    {{post.title}} <br>
-    {{post.author}}
-    <hr>
-  {% endfor %}
+    <div class="profile-content-section1">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ thisuser.profile.image.url }}">
+        </div>
+        <div class="profile-username">@{{ thisuser.username }}</div>
+    </div>      
+        
+
+    <div class="profile-user-posts">  
+        <div class="infinite-container" >
+            {% for post in posts %}
+            <div class="post-box infinite-item">
+                <div class="content-section">
+                    <div class="img-section"><a href="{% url 'blog:user-posts' post.author.username %}"><img class="img-circle" src="{{ post.author.profile.image.url }}"></a></div>
+                    <div class="title-author">
+                    <div class="author-publish">
+                        <div > <a class="author-only-link" href="{% url 'blog:user-posts' post.author.username %}">@{{post.author}}</a></div>
+                        <div class="publish-only">{{post.publish|date:"b d, Y P"}}</div>
+                    </div>
+                    <div class="only-title"> <a class="only-title-link" href="{% url 'blog:post-detail' post.id %}">{{post.title}}</a></div>
+                    
+                    <div class="tags">
+                        {% for tag in post.tags.all %}
+                        <a class="my-link-tag badge badge-info" href="{% url 'blog:post-list-by-tag' tag.slug %}">
+                            {{ tag.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    
+                    </div>
+                </div>
+        
+                <div class="content-body">
+                    {{post.body|safe|linebreaks|truncatechars:420}} 
+                        {% if post.body|length >= 420 %} 
+                        <a class="only-body-link" href="{% url 'blog:post-detail' post.id %}">
+                            <span id="read-more">read more</span> 
+                        </a>
+                        {% endif %}
+                    <div><strong>Book:</strong> {{ post.book_name }}</div>
+                    <div><strong>Author:</strong> {{ post.author_name }}</div>
+                </div>
+        
+                <div id="comment-like">
+                    <a class="comment-like-link" href="{% url 'blog:post-detail' post.id %}">
+                    <i class="fa fa-heart-o" style="font-size:20px;color:rgb(221, 90, 90)"></i>
+                    <span style="font-size: 18px; color: black; font-family: 'Barlow', sans-serif;" >{{ post.likes.count }} like{{ post.likes.count|pluralize }}</span> 
+                    <i class="fa fa-comment-o" style="font-size:23px;color:rgb(19, 146, 29)"></i>
+                    <span style="font-size: 18px; color: black; font-family: 'Barlow', sans-serif;">{{ post.post_comments.count }} comment{{ post.post_comments.count|pluralize }}</span> 
+                    <i class="fa fa-caret-right" style="font-size:20px;color:#0c6690;"></i>
+                    </a>
+                </div>
+                </div>
+            {% endfor %}
+            </div>
+            {% include "blog/pagination.html" with page=posts %}    
+        </div>
 
 {% endblock content %}

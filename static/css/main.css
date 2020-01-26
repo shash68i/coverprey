@@ -323,6 +323,21 @@ li a:hover {
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
+.profile-content-section1 {
+  margin-left: 16.5%;
+  margin-right: 16.5%;
+  font-family: 'Quicksand', sans-serif;
+  background: #ffffff;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 4px;
+  padding: 7px;
+  margin-bottom: 7px;
+  height: 14rem;
+  
+  box-shadow: 0 0.3px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
 .profile-form-content {
   text-align: center;
   margin: 0 auto;

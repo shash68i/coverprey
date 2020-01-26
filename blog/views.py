@@ -160,7 +160,22 @@ def UserPostListView(request, username):
     user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(author=user)
 
-    return render(request, 'blog/user_posts.html', {'posts':posts})
+
+    paginator = Paginator(posts, 4) # 4 posts in each page
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        posts = paginator.page(paginator.num_pages)
+
+
+    return render(request, 'blog/user_posts.html', {'posts':posts, 
+                                                    'thisuser':user,
+                                                    'page':page})
 
 
 @login_required
