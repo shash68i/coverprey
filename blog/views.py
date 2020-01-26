@@ -39,6 +39,9 @@ def PostListView(request, tag_slug=None):
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         posts = posts.filter(tags__in=[tag])
+    
+    # To get most common tags
+    commonTags = Post.tags.most_common()[:20]
 
     # For searched posts
     if request.GET.get('q') is not None:
@@ -58,7 +61,7 @@ def PostListView(request, tag_slug=None):
                 TrigramSimilarity('title', query)
             )).filter(similarity__gte=0.1).order_by('-similarity')
 
-
+    # For Pagination
     paginator = Paginator(posts, 4) # 4 posts in each page
     page = request.GET.get('page')
     try:
@@ -69,11 +72,13 @@ def PostListView(request, tag_slug=None):
     except EmptyPage:
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
+
     return render(request, 'blog/post_list.html', {'page': page,
                                                    'posts': posts,
-                                                   'tag':tag})
+                                                   'tag':tag,
+                                                   'commontags':commonTags})
 
-
+@login_required(login_url='/login/')
 def PostDetailView(request, pk):
     user = request.user
     post = get_object_or_404(Post, pk=pk)
@@ -115,7 +120,8 @@ def PostDetailView(request, pk):
                             'comment_form': comment_form,
                             'similar_posts': similar_posts,
                             'total_likes': post.total_likes(),
-                            'is_liked': is_liked,})
+                            'is_liked': is_liked,
+                        })
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
