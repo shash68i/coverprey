@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
 
     <!-- FONT AWESOME -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,12 +25,12 @@
     <ul>            
         <div class="container">
             <div>
-                    <li id="coverprey"><a href="{% url 'blog:post-list' %}">COVERPREY</a></li>
+                <li id="coverprey"><a href="{% url 'blog:post-list' %}"><i class="fa fa-newspaper-o" style="font-size:23px; color: #279ad8;"></i><span style="color: white;">COVERPREY</span></a></li>
             </div> 
             <div class="topnav-right">
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="fa fa-user" style="font-size:23px; color: #ffffff;"></i></a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>  
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:23px; color: #ffffff;"></i></a></li>  
                 {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}  
@@ -51,6 +52,46 @@
 
     {% endblock %}
 
+    </div>
+    <div class="footer-note">
+        <div class="footer-bar"></div>
+        <div class="container">
+            <div style="font-family: 'Muli', sans-serif;" class="footer-items" >
+                <div class="footer-contents">
+                    <a class="footer-cover" href="{% url 'blog:post-list' %}">
+                        <i class="fa fa-newspaper-o" style="font-size:23px; color: #279ad8;"></i>
+                        <span id="coverprey" style="color: white;"> COVERPREY</span>
+                    </a> <br>
+                    About <br>
+                    Explore <br>
+                    Privacy <br>
+                    T & C <br>
+                </div>
+                <div class="footer-contents">
+                    <br> Help <br>
+                    Services <br>
+                    Promotions <br>
+                </div>
+                <div class="footer-contents">
+                    <br> <div style="font-size: 20px;" ><u>Contacts</u></div>
+
+                    <strong>mail:</strong>: theshashank6872@gmail.com <br>
+                    <strong>Mob:</strong> +91-7488607770 <br>
+                    <strong>Website:</strong> 
+                        <a style="color: #6ec4ec;" class="footer-cover" href="shash68i.github.com/me">
+                            shash68i.github.com/me
+                        </a>
+                    <br>
+                    <strong>LinkedIn:</strong> 
+                        <a style="color: #6ec4ec;" class="footer-cover" href="https://www.linkedin.com/in/shashank-kashyap-a65930156">
+                            https://www.linkedin.com/in/shashank-kashyap-a65930156 
+                        </a>
+                </div>
+            </div>
+            <div class="copyright-section">
+                <i class="fa fa-copyright" style="font-size:18px; color: white;"></i><span style="color: white;"> 2020 coverprey</span>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -62,7 +62,7 @@ def PostListView(request, tag_slug=None):
             )).filter(similarity__gte=0.1).order_by('-similarity')
 
     # For Pagination
-    paginator = Paginator(posts, 4) # 4 posts in each page
+    paginator = Paginator(posts, 8) # 8 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
