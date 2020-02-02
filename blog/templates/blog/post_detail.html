@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-8">
       <div class="my-font post-detail">
-          <div><h3 class="my-font">{{post.title}}</h3></div>
+          <div><h3 style="font-weight: 700;" class="my-font">{{post.title}}</h3></div>
           <div class="update-delete-buttons">
               {% if post.author == user %}
                 <a class="my-font2 btn btn-secondary btn-sm mt-1 ml-2 mb-1" href="{% url 'blog:post-update' post.id %}">Update</a>
@@ -28,7 +28,7 @@
           <br>
           <span style="opacity: 0.6;">
             <small>
-              {{ comment.author.username }}
+              <a class="author-only-link" style="font-size: 14px;" href="{% url 'blog:user-posts' comment.author.username %}">{{ comment.author.username }}</a>
               {{ comment.created }}
           </small>
           </span>

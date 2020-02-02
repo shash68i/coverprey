@@ -385,11 +385,19 @@ li a:hover {
 }
 
 .user-email[type=email] {
-  width: 368px;
+  width: 398px;
+  margin-left: 23px;
 }
 
+.user-email[type=email]:focus {
+  border: 2px solid #0084bf;
+  border-radius: 5px;
+  outline: none;
+}
+
+
 .user-location[type=text] {
-  width: 347px;
+  width: 398px;
 }
 
 .user-image[type=file] {
@@ -412,8 +420,10 @@ label {
   border: 2px solid #0084bf;
   border-radius: 5px;
   resize: none;
-  height: 40px;
+  height: 80px;
+  width: 399px;
   padding-left: 5px;
+  margin-left: 40px;
 }
 
 .profile-username {
@@ -671,6 +681,21 @@ label {
   text-decoration: none;
 }
 
-.comment-form {
-  
+.comment {
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 4px;
+  background-color: rgb(255, 255, 255);
+}
+
+.detail-like {
+  background: none; 
+  border: none;
+  outline: none;
+}
+
+.detail-like:focus {
+  background: none; 
+  border: none;
+  outline: none;
 }

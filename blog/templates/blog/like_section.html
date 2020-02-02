@@ -1,15 +1,21 @@
 <div style="display:flex;">
-<div>{{ total_likes }} Like{{ total_likes|pluralize }}</div>
-<div class="ml-2">
-{% if request.user.is_authenticated %}
-<form action="{% url 'blog:like' %}" method="post">
-  {% csrf_token %}
-  {% if is_liked %}
-    <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-danger">Dislike</button>
-  {% else %}
-    <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
-  {% endif %}
-</form>
-{% endif %}
-</div>
+  <div>
+    {% if request.user.is_authenticated %}
+      <form action="{% url 'blog:like' %}" method="post">
+        {% csrf_token %}
+
+        {% if is_liked %}
+          <button class="detail-like" type="submit" id="like" name="post_id" value="{{ post.id }}">
+            <i class="fa fa-heart" style="font-size:28px; color:red"></i>
+          </button>
+        {% else %}
+          <button class="detail-like" type="submit" id="like" name="post_id" value="{{ post.id }}">
+            <i class="fa fa-heart-o" style="font-size:28px; color:red"></i>
+          </button>
+        {% endif %}
+      </form>
+    {% endif %}
+  </div>
+
+  <div style="font-size: 22px;" class="ml-2">{{ total_likes }} Like{{ total_likes|pluralize }}</div>
 </div>
