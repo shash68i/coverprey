@@ -1,4 +1,6 @@
-{{ total_likes }} Like{{ total_likes|pluralize }}
+<div style="display:flex;">
+<div>{{ total_likes }} Like{{ total_likes|pluralize }}</div>
+<div class="ml-2">
 {% if request.user.is_authenticated %}
 <form action="{% url 'blog:like' %}" method="post">
   {% csrf_token %}
@@ -9,3 +11,5 @@
   {% endif %}
 </form>
 {% endif %}
+</div>
+</div>

@@ -3,45 +3,44 @@
 {% block content %}
 <div class="row">
   <div class="col-8">
-      <div class="post-detail">
-          <div><h3>{{post.title}}</h3></div>
+      <div class="my-font post-detail">
+          <div><h3 class="my-font">{{post.title}}</h3></div>
           <div class="update-delete-buttons">
               {% if post.author == user %}
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog:post-update' post.id %}">Update</a>
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:post-delete' post.id %}">Delete</a>
+                <a class="my-font2 btn btn-secondary btn-sm mt-1 ml-2 mb-1" href="{% url 'blog:post-update' post.id %}">Update</a>
+                <a class="my-font2 btn btn-danger btn-sm ml-1 mt-1 mb-1" href="{% url 'blog:post-delete' post.id %}">Delete</a>
               {% endif %}
           </div>      
       </div>
-      {{post.body}}
-      <br>
-      <hr>
+         <span class="my-font2" style="font-size:18px;">{{post.body}}</span> 
       <br>
       <hr>
     
       {% with comments.count as total_comments %}
-        <h2>
+        <h4 class="my-font">
           {{ total_comments }} comment{{ total_comments|pluralize }}
-        </h2>
+        </h4>
       {% endwith %}
     
       {% for comment in comments %}
         <div class="comment">
-          <p class="info">
-            Comment {{ forloop.counter }} by {{ comment.author.username }}
-            {{ comment.created }}
-          </p>
-          {{ comment.body|linebreaks }}
+          <span style="font-size: 18px;">{{ comment.body}}</span>
+          <br>
+          <span style="opacity: 0.6;">
+            <small>
+              {{ comment.author.username }}
+              {{ comment.created }}
+          </small>
+          </span>
         </div>
-        <hr>
       {% empty %}
           <p>There are no comments yet.</p>
       {% endfor %}
-    
-      <h2>Add a new comment</h2>
+        <br>
       <form action="." method="POST">
         {% csrf_token %}
         {{ comment_form|crispy }}  
-        <p><button>Add Comment</button></p>
+        <p><button class="btn-update my-font">Comment</button class="my-font"></p>
       </form>
 
       <div id="like-section">

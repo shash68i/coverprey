@@ -268,9 +268,10 @@ li a:hover {
   display: flex;
 }
 
-.update-delete-buttons {
-  margin-left: 366px;
-}
+/* .update-delete-buttons {
+  position: absolute;
+  float: right;
+} */
 
 .my-link-tag {
   color: #0084bf;
@@ -668,4 +669,8 @@ label {
 
 .footer-cover:hover {
   text-decoration: none;
+}
+
+.comment-form {
+  
 }

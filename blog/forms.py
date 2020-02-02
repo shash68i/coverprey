@@ -3,6 +3,13 @@ from django import forms
 
 
 class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['body'].widget.attrs = {
+            'placeholder': 'Write a comment here...',
+            'id' : 'comment-create'
+        }
+
     class Meta:
         model = Comment
         fields = ('body',)
