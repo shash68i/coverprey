@@ -1,1 +1,1 @@
-web:gunicorn coverprey.wsgi
+web: gunicorn coverprey.wsgi --log-file -
