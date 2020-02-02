@@ -1,1 +1,0 @@
-web: gunicorn coverprey.wsgi --log-file -
