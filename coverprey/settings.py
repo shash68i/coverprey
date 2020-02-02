@@ -1,5 +1,6 @@
 import os
 from decouple import config
+import django_heroku
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -173,3 +174,6 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS' : False,
     'SHOW_TOOLBAR_CALLBACK' : show_toolbar
 }
+
+
+django_heroku.settings(locals())
